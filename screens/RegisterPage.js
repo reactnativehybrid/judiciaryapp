@@ -1,71 +1,51 @@
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../firebase';
-import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert } from 'react-native';
+import { auth,createUserDocument } from '../firebase';
+import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert, ScrollView } from 'react-native';
 
 const RegisterPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [UserName, setUserName] = useState('');
+  const [Phoneno, setPhoneNumber] = useState('');
   
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   
-    useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(user => {
-        if (user) {
-          navigation.replace("Home")
-        }
-      })
-  
-      return unsubscribe
-    }, [])
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        navigation.replace("Home")
+      }
+    })
+    return unsubscribe
+  }, [])
 
-    const handleSignUp = () => {
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then(userCredentials => {
-          const user = userCredentials.user;
-          console.log('Registered with:', user.email);
-        })
-        .catch(error => alert(error.message))
-    }
-    const Login = () => {
-        navigation.navigate("Login")
+  const handleSignUp = () => {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+       createUserDocument(user,{UserName},{Phoneno});
+        console.log('Registered with:', user.email);
+      })  
+      .catch(error => alert(error.message))
+  };
+  const Login = () => {
+    navigation.navigate("Login")
  
-     };
+  };
   
-  
-      /*const [userName,setUserName] = useState("");
-      const [password,setPassword] = useState("");
-      console.log(userName,password);
-      const onSubmit = () =>{
-          //return Alert.alert(userName,password);
-  
-          if(userName =="admin@gmail.com" && password == "12345" ){
-              Alert.alert( 'Success',
-              'You are Logged in Successfully',
-              [
-                {
-                  text: 'Ok',
-                  onPress: () => navigation.navigate("Home"),
-                },
-              ],
-              { cancelable: false });
-              //navigation.navigate("Home");
-          }else{
-              Alert.alert('Username and Password is not correct');
-          }
-      };*/
-      return (
-        <KeyboardAvoidingView
-           behavior={Platform.OS === "ios" ? "padding" : "height"}
-           style={styles.main}
-        > 
+  return (
+      
+    <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios'? 'padding':'height'}> 
+          <ScrollView contentContainerStyle={{flex:1}}>
               <View style={styles.card}>
                    <Image style={styles.loginlogo}  source={require('../public/icons/UJF-128.jpg')}/>
                    <View style={styles.form}>
                        <View style={styles.inputs}>
+                       <TextInput style={styles.input} placeholder="UserName" autoCapitalize="none" value={UserName} onChangeText={text => setUserName(text)}></TextInput>
                            <TextInput style={styles.input} placeholder="Email id" autoCapitalize="none" value={email} onChangeText={text => setEmail(text)}></TextInput>
                            <TextInput secureTextEntry={true} style={styles.input} autoCapitalize="none" placeholder="Password" autoCorrect={false} value={password} onChangeText={text => setPassword(text)}></TextInput>
+                           <TextInput style={styles.input} placeholder="Mobile No." autoCapitalize="none" value={Phoneno} onChangeText={Number => setPhoneNumber(Number)}></TextInput>
                            <TouchableOpacity style={styles.button} onPress={handleSignUp}>
                             <Text style={styles.buttonText}>SignUp</Text>
                            </TouchableOpacity>
@@ -75,17 +55,16 @@ const RegisterPage = () => {
                        </View>    
                    </View>
                </View> 
+          </ScrollView>
         </KeyboardAvoidingView>
-      );
-  };
+        
+  );
+};
   
   const styles = StyleSheet.create({
 
     main: {
         flex: 1,
-        width: '100%',
-        alignItems: 'center',
-        backgroundColor: 'white',
        
     },  
     
@@ -93,19 +72,15 @@ const RegisterPage = () => {
         flex: 1,
         backgroundColor: 'white',
         width: '100%',
-        marginTop: '30%',
-        resizeMode: 'contain',
         alignSelf: 'center',
-        borderRadius: 20,
-        maxHeight: 450,
-    
     },
     
     loginlogo: {
         resizeMode: 'contain',
         alignSelf: 'center',
+        marginTop:50,
         width:'100%',
-        marginBottom:'30%',
+        marginBottom:10,
     },
     form: {
         flex: 1,

@@ -2,7 +2,7 @@ import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { auth } from '../firebase';
 import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert } from 'react-native';
-
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 const AuthScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -68,10 +68,7 @@ const AuthScreen = () => {
     return (
 
 
-          <KeyboardAvoidingView
-               behavior={Platform.OS === "ios" ? "padding" : "height"}
-               style={styles.main}
-          > 
+          <KeyboardAwareScrollView  contentContainerStyle={{flex:1}} extraHeight={120}> 
             <View style={styles.card}>
                  <Image style={styles.loginlogo}  source={require('../public/icons/UJF-128.jpg')}/>
                  <View style={styles.form}>
@@ -87,37 +84,24 @@ const AuthScreen = () => {
                      </View>    
                  </View>
              </View> 
-          </KeyboardAvoidingView>
+            </KeyboardAwareScrollView> 
         
     );
 };
 
 const styles = StyleSheet.create({
-
-    main: {
-        flex: 1,
-        width: '100%',
-        alignItems: 'center',
-        backgroundColor: 'white',
-       
-    },  
-    
+     
     card: {
         flex: 1,
         backgroundColor: 'white',
-        width: '100%',
-        marginTop: '30%',
-        resizeMode: 'contain',
+        width: '100%',  
         alignSelf: 'center',
-        borderRadius: 20,
-        maxHeight: 450,
-    
     },
     
     loginlogo: {
         resizeMode: 'contain',
-        alignSelf: 'center',
         width:'100%',
+        marginTop:50,
         marginBottom:'30%',
     },
     form: {
