@@ -13,8 +13,8 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-       <Stack.Navigator initialRouteName="Login">
-         <Stack.Screen name='Welcome' component={WelcomePage}  options={{ headerShown: true }}/>
+       <Stack.Navigator initialRouteName="Welcome">
+         <Stack.Screen name='Welcome' component={WelcomePage}  options={{ headerShown: false }}/>
          <Stack.Screen name="Login" component={AuthScreen} options={{ headerShown: true }}/>
          <Stack.Screen name="Register" component={RegisterPage} options={{ headerShown: true }}/>
          <Stack.Screen name="Home" component={home} options={{ headerShown: true }}/>
