@@ -4,6 +4,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { auth } from '../firebase'
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
+
+
+
 const HomeScreen = () => {
 
   const navigation = useNavigation()
