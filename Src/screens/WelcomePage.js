@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../firebase';
-import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
 
@@ -18,13 +17,13 @@ const WelcomePage = () =>{
      
       };
     let [fontsLoaded] = useFonts({
-        'Roboto-Bold': require('../public/fonts/Roboto-Bold.ttf'),
-        'Roboto-BoldItalic': require('../public/fonts/Roboto-BoldItalic.ttf'),
-        'Roboto-Regular': require('../public/fonts/Roboto-Regular.ttf'),
-        'Roboto-Italic': require('../public/fonts/Roboto-Italic.ttf'),
-        'Roboto-Medium': require('../public/fonts/Roboto-Medium.ttf'),
-        'Roboto-Black': require('../public/fonts/Roboto-Black.ttf'),
-        'Roboto-MediumItalic': require('../public/fonts/Roboto-MediumItalic.ttf'),
+      'Roboto-Bold': require('../../public/fonts/Roboto-Bold.ttf'),
+      'Roboto-BoldItalic': require('../../public/fonts/Roboto-BoldItalic.ttf'),
+      'Roboto-Regular': require('../../public/fonts/Roboto-Regular.ttf'),
+      'Roboto-Italic': require('../../public/fonts/Roboto-Italic.ttf'),
+      'Roboto-Medium': require('../../public/fonts/Roboto-Medium.ttf'),
+      'Roboto-Black': require('../../public/fonts/Roboto-Black.ttf'),
+      'Roboto-MediumItalic': require('../../public/fonts/Roboto-MediumItalic.ttf'),
       });
     
     if (!fontsLoaded) {
@@ -34,7 +33,7 @@ const WelcomePage = () =>{
 
     return(
         <View style={styles.main}>
-           <Image style={styles.loginlogo}  source={require('../public/icons/UJF-128.jpg')}/>
+           <Image style={styles.loginlogo}  source={require('../../public/icons/UJF-128.jpg')}/>
            <View style={styles.Head}>
                <Text style={styles.header}>Hey! Welcome</Text>
                <Text></Text>

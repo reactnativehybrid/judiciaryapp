@@ -1,7 +1,4 @@
-// Import the functions you need from the SDKs you need
-//import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
 import * as firebase from "firebase";
 
 // Your web app's Firebase configuration
@@ -14,8 +11,6 @@ const firebaseConfig = {
   appId: "1:274481330017:web:6ca0592475dd5f84e6f720"
 };
 
-// Initialize Firebase
-//const app = initializeApp(firebaseConfig);
 let app;
 if (firebase.apps.length === 0) {
   app = firebase.initializeApp(firebaseConfig);
@@ -50,5 +45,3 @@ export const createUserDocument =  (user, additionalData,Mobile) => {
     }
   }
 };
-//hello
-//iuhafejefgh

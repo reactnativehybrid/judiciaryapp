@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { auth,createUserDocument } from '../firebase';
+import { auth,createUserDocument } from '../../firebase';
 import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import AppLoading from 'expo-app-loading';
@@ -17,10 +17,10 @@ const RegisterPage = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.replace("Home")
+        navigation.replace("Home");
       }
     })
-    return unsubscribe
+    return unsubscribe;
   }, [])
 
   const handleSignUp = () => {
@@ -37,13 +37,13 @@ const RegisterPage = () => {
  
   };
   let [fontsLoaded] = useFonts({
-    'Roboto-Bold': require('../public/fonts/Roboto-Bold.ttf'),
-    'Roboto-BoldItalic': require('../public/fonts/Roboto-BoldItalic.ttf'),
-    'Roboto-Regular': require('../public/fonts/Roboto-Regular.ttf'),
-    'Roboto-Italic': require('../public/fonts/Roboto-Italic.ttf'),
-    'Roboto-Medium': require('../public/fonts/Roboto-Medium.ttf'),
-    'Roboto-Black': require('../public/fonts/Roboto-Black.ttf'),
-    'Roboto-MediumItalic': require('../public/fonts/Roboto-MediumItalic.ttf'),
+    'Roboto-Bold': require('../../public/fonts/Roboto-Bold.ttf'),
+    'Roboto-BoldItalic': require('../../public/fonts/Roboto-BoldItalic.ttf'),
+    'Roboto-Regular': require('../../public/fonts/Roboto-Regular.ttf'),
+    'Roboto-Italic': require('../../public/fonts/Roboto-Italic.ttf'),
+    'Roboto-Medium': require('../../public/fonts/Roboto-Medium.ttf'),
+    'Roboto-Black': require('../../public/fonts/Roboto-Black.ttf'),
+    'Roboto-MediumItalic': require('../../public/fonts/Roboto-MediumItalic.ttf'),
   });
 
 if (!fontsLoaded) {
@@ -53,7 +53,7 @@ if (!fontsLoaded) {
   return (
     <KeyboardAwareScrollView>
       <View style={styles.card} >
-        <Image style={styles.loginlogo}  source={require('../public/icons/UJF-128.jpg')}/>
+        <Image style={styles.loginlogo}  source={require('../../public/icons/UJF-128.jpg')}/>
           <View style={styles.inputs}>
             <TextInput style={styles.input} placeholder="UserName" autoCapitalize="none" value={UserName} onChangeText={text => setUserName(text)}></TextInput>
             <TextInput style={styles.input} placeholder="Email id" autoCapitalize="none" value={email} onChangeText={text => setEmail(text)}></TextInput>

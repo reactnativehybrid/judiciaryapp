@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AppLoading from 'expo-app-loading';
@@ -15,22 +15,12 @@ const AuthScreen = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.replace("Home")
+        navigation.replace("Home");
       }
     })
 
-    return unsubscribe
-  }, [])
-
- /* const handleSignUp = () => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log('Registered with:', user.email);
-      })
-      .catch(error => alert(error.message))
-  }*/
+    return unsubscribe;
+  }, []);
 
   const handleLogin = () => {
     auth
@@ -42,40 +32,18 @@ const AuthScreen = () => {
       .catch(error => alert(error.message))
   }
 
-
-    /*const [userName,setUserName] = useState("");
-    const [password,setPassword] = useState("");
-    console.log(userName,password);
-    const onSubmit = () =>{
-        //return Alert.alert(userName,password);
-
-        if(userName =="admin@gmail.com" && password == "12345" ){
-            Alert.alert( 'Success',
-            'You are Logged in Successfully',
-            [
-              {
-                text: 'Ok',
-                onPress: () => navigation.navigate("Home"),
-              },
-            ],
-            { cancelable: false });
-            //navigation.navigate("Home");
-        }else{
-            Alert.alert('Username and Password is not correct');
-        }
-    };*/
   const Register = () => {
     navigation.navigate("Register")
 
   };
   let [fontsLoaded] = useFonts({
-    'Roboto-Bold': require('../public/fonts/Roboto-Bold.ttf'),
-    'Roboto-BoldItalic': require('../public/fonts/Roboto-BoldItalic.ttf'),
-    'Roboto-Regular': require('../public/fonts/Roboto-Regular.ttf'),
-    'Roboto-Italic': require('../public/fonts/Roboto-Italic.ttf'),
-    'Roboto-Medium': require('../public/fonts/Roboto-Medium.ttf'),
-    'Roboto-Black': require('../public/fonts/Roboto-Black.ttf'),
-    'Roboto-MediumItalic': require('../public/fonts/Roboto-MediumItalic.ttf'),
+    'Roboto-Bold': require('../../public/fonts/Roboto-Bold.ttf'),
+    'Roboto-BoldItalic': require('../../public/fonts/Roboto-BoldItalic.ttf'),
+    'Roboto-Regular': require('../../public/fonts/Roboto-Regular.ttf'),
+    'Roboto-Italic': require('../../public/fonts/Roboto-Italic.ttf'),
+    'Roboto-Medium': require('../../public/fonts/Roboto-Medium.ttf'),
+    'Roboto-Black': require('../../public/fonts/Roboto-Black.ttf'),
+    'Roboto-MediumItalic': require('../../public/fonts/Roboto-MediumItalic.ttf'),
   });
 
 if (!fontsLoaded) {
@@ -84,7 +52,7 @@ if (!fontsLoaded) {
   return (
     <KeyboardAwareScrollView extraHeight={120}> 
       <View style={styles.card}>
-        <Image style={styles.loginlogo}  source={require('../public/icons/UJF-128.jpg')}/>
+        <Image style={styles.loginlogo}  source={require('../../public/icons/UJF-128.jpg')}/>
           <View style={styles.inputs}>
              <TextInput style={styles.input} placeholder="Email id" autoCapitalize="none" value={email} onChangeText={text => setEmail(text)}></TextInput>
              <TextInput secureTextEntry={true} style={styles.input} autoCapitalize="none" placeholder="Password" autoCorrect={false} value={password} onChangeText={text => setPassword(text)}></TextInput>

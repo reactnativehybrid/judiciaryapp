@@ -1,7 +1,6 @@
 import React from 'react';
 import home from "../screens/home";
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { AboutScreen } from '../screens/EduScreen';
 import MedScreen from '../screens/MedScreen';
 import {EnvScreen} from '../screens/EnvScreen';
 import {MouScreen} from '../screens/MouScreen';
@@ -18,7 +17,7 @@ const AppStack = () =>{
 
   return (
     
-    <Drawer.Navigator initialRouteName="Home" 
+    <Drawer.Navigator initialRouteName="Home2" 
       drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={{
       drawerActiveBackgroundColor: '#aa18ea',
@@ -31,7 +30,7 @@ const AppStack = () =>{
       },
       }}
     >
-        <Drawer.Screen name="Home" component={home} 
+        <Drawer.Screen name="Home2" component={home} 
          options={{
           title: 'Home',
           headerStyle: {

@@ -10,7 +10,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
 import { useNavigation } from '@react-navigation/core'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
