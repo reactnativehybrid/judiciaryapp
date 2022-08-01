@@ -10,7 +10,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { auth } from '../../firebase'
+import { auth} from '../../firebase'
 import { useNavigation } from '@react-navigation/core'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -41,7 +41,6 @@ const CustomDrawer = props => {
             style={{
               color: '#fff',
               fontSize: 18,
-              fontFamily: 'Roboto-Medium',
               marginBottom: 5,
             }}>
             {auth.currentUser?.email}
@@ -50,7 +49,6 @@ const CustomDrawer = props => {
             <Text
               style={{
                 color: '#fff',
-                fontFamily: 'Roboto-Regular',
                 marginRight: 5,
               }}>
             </Text>
@@ -67,7 +65,6 @@ const CustomDrawer = props => {
             <Text
               style={{
                 fontSize: 15,
-                fontFamily: 'Roboto-Medium',
                 marginLeft: 5,
               }}>
               Tell a Friend
@@ -80,7 +77,6 @@ const CustomDrawer = props => {
             <Text
               style={{
                 fontSize: 15,
-                fontFamily: 'Roboto-Medium',
                 marginLeft: 5,
               }}>
               Sign Out

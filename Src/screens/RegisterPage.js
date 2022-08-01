@@ -1,8 +1,9 @@
 import React, { useState,useEffect} from 'react';
-import { useNavigation } from '@react-navigation/core';
-import { auth,createUserDocument } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
+import {auth,createUserDocument } from '../../firebase';
 import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert, ScrollView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
 const RegisterPage = () => {
@@ -13,18 +14,18 @@ const RegisterPage = () => {
   const [Phoneno, setPhoneNumber] = useState('');
   
   const navigation = useNavigation();
-  
-  useEffect(() => {
+  //const auth = getAuth();
+  /*useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         navigation.replace("Home");
       }
     })
     return unsubscribe;
-  }, [])
+  }, [])*/
 
   const handleSignUp = () => {
-    auth.createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth,email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
        createUserDocument(user,{UserName},{Phoneno});

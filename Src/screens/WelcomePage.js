@@ -28,7 +28,7 @@ const WelcomePage = () =>{
     
     if (!fontsLoaded) {
         return <AppLoading/>;
-    } 
+    }
 
 
     return(

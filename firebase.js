@@ -1,47 +1,116 @@
 
-import * as firebase from "firebase";
+import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
+import {getFirestore,getDoc,setDoc,doc} from "firebase/firestore" ;
+import {getAuth} from "firebase/auth" ;
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBhyNFO6EsuN6yzHsYke3mxhZXEjBw1uYc",
-  authDomain: "iit-project-565f2.firebaseapp.com",
-  projectId: "iit-project-565f2",
-  storageBucket: "iit-project-565f2.appspot.com",
-  messagingSenderId: "274481330017",
-  appId: "1:274481330017:web:6ca0592475dd5f84e6f720"
+  apiKey: "AIzaSyAV0Ecz6eb4fi_PKO9Zqt8gTPGBs_s-aXc",
+  authDomain: "iit-test-ad13e.firebaseapp.com",
+  projectId: "iit-test-ad13e",
+  storageBucket: "iit-test-ad13e.appspot.com",
+  messagingSenderId: "392171905381",
+  appId: "1:392171905381:web:a473407b12fc856aae818c",
+  measurementId: "G-EEBDVY8PD1"
 };
 
-let app;
-if (firebase.apps.length === 0) {
-  app = firebase.initializeApp(firebaseConfig);
-} else {
-  app = firebase.app()
-}
-
-const auth = firebase.auth()
-const firestore =firebase.firestore();
-export {firestore};
-export { auth };
-export const createUserDocument =  (user, additionalData,Mobile) => {
-  if (!user) return;
-
-  const userRef = firestore.doc(`Users/${user.uid}`);
-
-  const snapshot = userRef.get();
-
-  if (!snapshot.exists) {
-    const { email } = user;
-    const { UserName } = additionalData;
-    const {Phoneno} = Mobile;
-    try {
-      userRef.set({
-        UserName,
-        email,
-        Phoneno,
-        createdAt: new Date(),
-      });
-    } catch (error) {
-      console.log('Error in creating user', error);
+// Initialize Firebase
+export const app = initializeApp(firebaseConfig);
+export const auth= getAuth(app) ;
+//const analytics = getAnalytics(app);
+export const db =getFirestore(app) ;
+/*export const createUserDocument =  (user, additionalData,Mobile) => {
+    if (!user) return;
+  
+    //const userRef = firestore.doc(`Users/${user.uid}`);
+    const userRef = doc(db,`Users/${user.uid}`);
+    const snapshot = userRef.get();
+  
+    if (!snapshot.exists) {
+      const { email } = user;
+      const { UserName } = additionalData;
+      const {Phoneno} = Mobile;
+      try {
+        setDoc(userRef,{
+          UserName,
+          email,
+          Phoneno,
+          createdAt: new Date(),
+        });
+      } catch (error) {
+        console.log('Error in creating user', error);
+      }
     }
+  };*/
+  /*export const createUserDocument =  (user, additionalData,Mobile) => {
+    if (!user) return;
+  
+    const userRef = doc(db,`Users/${user.uid}`);
+  
+    const snapshot = getDoc(userRef);
+  
+    if (!snapshot.exists) {
+      const { email } = user;
+      const { UserName } = additionalData;
+      const {Phoneno} = Mobile;
+      try {
+        setDoc(userRef,{
+          UserName,
+          email,
+          Phoneno,
+          createdAt: new Date(),
+        });
+      } catch (error) {
+        console.log('Error in creating user', error);
+      }
+    }
+  };*/
+  export const createUserDocument = ()=>
+  {
+
+    const myDoc = doc(db,"MyCollection","MyDocument")
+    const docData =
+    {
+      "name" :"Umang",
+      "bio"  :"Engineer"
+    }
+    setDoc(myDoc,docData)
+    .then(()=>{
+      alert("Document Created")
+    }
+    )
+    .catch((error)=>
+    {
+      alert(error.message) ;
+    })
+
   }
-};
+  /*export const createUserDocument =  (user, additionalData,Mobile) => {
+    if (!user) return;
+    const myDoc = doc(db,"Users",user.uid)
+    getDoc(myDoc)
+      .then((snapshot)=>
+      {
+        if(!snapshot.exists)
+        {
+          const { email } = user;
+          const { UserName } = additionalData;
+          const {Phoneno} = Mobile;
+
+          try
+          {
+            setDoc(myDoc,{
+              UserName,
+              email,
+              Phoneno,
+              createdAt: new Date(),
+            });
+       
+          }
+          catch(error)
+          {
+            console.log('Error in creating user', error);
+          }
+        }
+      });
+    }*/
