@@ -1,14 +1,15 @@
 import { useNavigation } from '@react-navigation/core'
-import React from 'react'
+import React,{useState, useRef} from 'react';
 import { StyleSheet, Text, TouchableOpacity, View,SafeAreaView,
-  ScrollView,ImageBackground } from 'react-native'
+  ScrollView,ImageBackground,Animated} from 'react-native'
 import { auth } from '../../firebase';
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
 import { LinearGradient } from 'expo-linear-gradient';
 import 'react-native-gesture-handler';
-
+import DynamicHeader from '../components/Header';
+ 
 const HomeScreen = () => {
 
   const navigation = useNavigation()
@@ -21,6 +22,11 @@ const HomeScreen = () => {
       })
       .catch(error => alert(error.message))
   }*/
+  let scrollOffsetY = useRef(new Animated.Value(0)).current;
+  const Legal = () => {
+    navigation.navigate("Legal")
+     
+  };
   let [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../../public/fonts/Roboto-Bold.ttf'),
     'Roboto-BoldItalic': require('../../public/fonts/Roboto-BoldItalic.ttf'),
@@ -34,29 +40,17 @@ const HomeScreen = () => {
 if (!fontsLoaded) {
     return <AppLoading/>;
 }
+ 
   return(
-    <SafeAreaView style={{flex: 1, backgroundColor:'#f0f2f5'}}>
-      <ScrollView>
-        
-        <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']}style={styles.container}>
-          <Text style={{fontSize: 18, color:'white'}}>
-            Hello, 
-            Umang 
-          </Text>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require('../../public/images/UJF.jpg')}
-              style={{width: 50, height: 50}}
-              imageStyle={{borderRadius: 25}}
-            />
-          </TouchableOpacity>
-        </LinearGradient>
-       
+    <SafeAreaView style={{flex: 1, backgroundColor:'#f0f2f5'}}>  
+      <DynamicHeader animHeaderValue={scrollOffsetY} />    
+      <ScrollView scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollOffsetY}}}],
+          {useNativeDriver: false}
+        )}>
         <View style={{flex:1}} >
-          <Card  style={{borderRadius:25,shadowColor: '#171717',
-            shadowOffset: {width: -2, height: 4},
-            shadowOpacity: 0.2,
-            shadowRadius: 3,}}>
+          <Card  style={{borderRadius:25}}>
 
             <View  style={styles.cardtitle}>
               <TouchableOpacity >
@@ -66,30 +60,22 @@ if (!fontsLoaded) {
                  imageStyle={{borderRadius: 25}}
                 />
               </TouchableOpacity>
-              <Text style={{fontSize:28, color:'white',marginRight:80,}}>
+              <Text style={{fontSize:28, color:'white',marginRight:80,fontFamily:'Roboto-Regular',}}>
                 Legal Expert
               </Text>
             </View>
-            <CardContent text="Voluptate tempor nisi aliquip nisi aute id sunt sint.Excepteur excepteur consequat nulla aute reprehenderit eu dolor aliqua excepteur cupidatat in ullamco." />
-              <CardAction 
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
+            <CardAction 
               separator={true} 
               inColumn={false}>
               <CardButton
-               onPress={() => {}}    
-                title="Share"
-                 color="#FEB557"
+               onPress={Legal}  
+                title="Show"
+                 color="#0044CC"
               />
-              <CardButton
-                onPress={() => {}}
-                title="Explore"
-                color="#FEB557"
-                />
             </CardAction>
           </Card>
-          <Card  style={{borderRadius:25,shadowColor: '#171717',
-            shadowOffset: {width: -2, height: 4},
-            shadowOpacity: 0.2,
-            shadowRadius: 3,}}>
+          <Card  style={{borderRadius:25}}>
 
             <View  style={{    flex:1,
               flexDirection: 'row',
@@ -112,26 +98,18 @@ if (!fontsLoaded) {
                 Educational
               </Text>
             </View>
-            <CardContent text="Voluptate tempor nisi aliquip nisi aute id sunt sint.Excepteur excepteur consequat nulla aute reprehenderit eu dolor aliqua excepteur cupidatat in ullamco." />
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
               <CardButton
                onPress={() => {}}    
-                title="Share"
-                 color="#FEB557"
+               title="Show"
+               color="#0044CC"
               />
-              <CardButton
-                onPress={() => {}}
-                title="Explore"
-                color="#FEB557"
-                />
             </CardAction>
           </Card>
-          <Card  style={{borderRadius:25,shadowColor: '#171717',
-            shadowOffset: {width: -2, height: 4},
-            shadowOpacity: 0.2,
-            shadowRadius: 3,}}>
+          <Card  style={{borderRadius:25}}>
             <View  style={{    flex:1,
               flexDirection: 'row',
               width:'100%',
@@ -153,26 +131,18 @@ if (!fontsLoaded) {
                 Medical
               </Text>
             </View>
-            <CardContent text="Voluptate tempor nisi aliquip nisi aute id sunt sint.Excepteur excepteur consequat nulla aute reprehenderit eu dolor aliqua excepteur cupidatat in ullamco." />
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
               <CardButton
                onPress={() => {}}    
-                title="Share"
-                 color="#FEB557"
+               title="Show"
+               color="#0044CC"
               />
-              <CardButton
-                onPress={() => {}}
-                title="Explore"
-                color="#FEB557"
-                />
             </CardAction>
           </Card>
-          <Card  style={{borderRadius:25,shadowColor: '#171717',
-            shadowOffset: {width: -2, height: 4},
-            shadowOpacity: 0.2,
-            shadowRadius: 3,}}>
+          <Card  style={{borderRadius:25}}>
 
             <View  style={{    flex:1,
               flexDirection: 'row',
@@ -195,26 +165,18 @@ if (!fontsLoaded) {
                 Environment
               </Text>
             </View>
-            <CardContent text="Voluptate tempor nisi aliquip nisi aute id sunt sint.Excepteur excepteur consequat nulla aute reprehenderit eu dolor aliqua excepteur cupidatat in ullamco." />
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
               <CardButton
                onPress={() => {}}    
-                title="Share"
-                 color="#FEB557"
+               title="Show"
+               color="#0044CC"
               />
-              <CardButton
-                onPress={() => {}}
-                title="Explore"
-                color="#FEB557"
-                />
             </CardAction>
           </Card>
-          <Card  style={{borderRadius:25,shadowColor: '#171717',
-            shadowOffset: {width: -2, height: 4},
-            shadowOpacity: 0.2,
-            shadowRadius: 3,}}>
+          <Card  style={{borderRadius:25}}>
 
             <View  style={{    flex:1,
               flexDirection: 'row',
@@ -237,20 +199,15 @@ if (!fontsLoaded) {
                 MOU
               </Text>
             </View>
-            <CardContent text="Voluptate tempor nisi aliquip nisi aute id sunt sint.Excepteur excepteur consequat nulla aute reprehenderit eu dolor aliqua excepteur cupidatat in ullamco." />
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
               <CardButton
                onPress={() => {}}    
-                title="Share"
-                 color="#FEB557"
+               title="Show"
+               color="#0044CC"
               />
-              <CardButton
-                onPress={() => {}}
-                title="Explore"
-                color="#FEB557"
-                />
             </CardAction>
           </Card>
         </View>
@@ -262,20 +219,6 @@ if (!fontsLoaded) {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width:'100%',
-    paddingLeft:20,
-    paddingRight:20,
-    alignItems:'center',
-    height:120,
-    //backgroundColor:'#4a4a4c',
-    backgroundColor: 'linear-gradient(to right bottom, rgb(77, 84, 209), rgb(165, 28, 123) 5%, rgb(238, 74, 55) 5%) center center',
-    borderBottomRightRadius: 50,
-    marginBottom:20,
-  },
   cardtitle:{
     flex:1,
     flexDirection: 'row',
@@ -301,6 +244,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
-})
+});
+
 export default HomeScreen
 

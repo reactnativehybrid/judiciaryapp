@@ -14,7 +14,7 @@ const RegisterPage = () => {
   const [Phoneno, setPhoneNumber] = useState('');
   
   const navigation = useNavigation();
-  //const auth = getAuth();
+ 
   /*useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {

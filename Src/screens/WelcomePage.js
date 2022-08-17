@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
 import {View, Text, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
+import { auth } from '../../firebase';
 
 
 
 const WelcomePage = () =>{
     const navigation = useNavigation();
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged(user => {
+        if (user) {
+          navigation.replace("Home");
+        }
+      })
+      return unsubscribe;
+    }, []);
+    
     const Login = () => {
         navigation.navigate("Login")
      

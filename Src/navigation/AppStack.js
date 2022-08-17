@@ -4,11 +4,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import MedScreen from '../screens/MedScreen';
 import {EnvScreen} from '../screens/EnvScreen';
 import {MouScreen} from '../screens/MouScreen';
-import {LegalScreen}from '../screens/LegalScreen';
+import LegalScreen from '../screens/LegalScreen';
 import {EduScreen} from '../screens/EduScreen';
 import CustomDrawer from '../components/CustomDrawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 
 const Drawer = createDrawerNavigator();
@@ -19,7 +19,9 @@ const AppStack = () =>{
     
     <Drawer.Navigator initialRouteName="Home2" 
       drawerContent={props => <CustomDrawer {...props} />}
+      
       screenOptions={{
+        
         headerShown: false,
       drawerActiveBackgroundColor: '#aa18ea',
       drawerActiveTintColor: '#fff',
@@ -41,11 +43,17 @@ const AppStack = () =>{
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          drawerIcon: ({color}) => (
+            <Ionicons name="home-outline" size={22} color={color} />
+          ),
         }}
         />
         <Drawer.Screen name="Legal" component={LegalScreen} 
         options={{
           title: 'Legal',
+          drawerIcon: ({color}) => (
+            <FontAwesome name="gavel" size={22} color={color} />
+          ),
          }}
         />
         <Drawer.Screen name="Educational" component={EduScreen}
@@ -58,6 +66,9 @@ const AppStack = () =>{
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          drawerIcon: ({color}) => (
+            <Ionicons name="ios-school-outline" size={22} color={color} />
+          ),
         }}
         />
         <Drawer.Screen name="Medical" component={MedScreen}
@@ -70,6 +81,9 @@ const AppStack = () =>{
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          drawerIcon: ({color}) => (
+            <FontAwesome name="stethoscope" size={22} color={color} />
+          ),
         }}
         />
         <Drawer.Screen name="Environment" component={EnvScreen}
@@ -82,7 +96,9 @@ const AppStack = () =>{
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          
+          drawerIcon: ({color}) => (
+            <Ionicons name="earth-outline" size={22} color={color} />
+          ),
         }}
         />
         <Drawer.Screen name="Mou" component={MouScreen}
@@ -95,6 +111,9 @@ const AppStack = () =>{
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          drawerIcon: ({color}) => (
+            <FontAwesome name="cube" size={22} color={color} />
+          ),
         }}
         />
       </Drawer.Navigator>

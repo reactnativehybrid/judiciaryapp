@@ -1,30 +1,30 @@
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../../firebase';
+import {auth} from '../../firebase';
+import {signInWithEmailAndPassword} from 'firebase/auth' ;
 import { ImageBackground, View, Text, StyleSheet,KeyboardAvoidingView, TouchableOpacity, TextInput, Platform,Image, Alert } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
 const AuthScreen = () => {
-
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.replace("Home");
+        navigation.replace("Home")
       }
     })
 
-    return unsubscribe;
-  }, []);
+    return unsubscribe
+  }, [])
+
 
   const handleLogin = () => {
-    auth
-      .signInWithEmailAndPassword(email, password)
+    
+      signInWithEmailAndPassword(auth,email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log('Logged in with:', user.email);
