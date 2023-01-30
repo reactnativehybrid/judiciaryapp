@@ -20,6 +20,8 @@ import * as ImagePicker from 'expo-image-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+// Code for the drawer that appears in the ham burgger bar
+
 const CustomDrawer = props => {
   const navigation = useNavigation()
   // share link
@@ -27,7 +29,7 @@ const CustomDrawer = props => {
     try{
       const result = await Share.share({
         message:
-          'React Native | A framework for building native apps using React',
+          'React Native | A framework for building native apps using React . This is an IIT-Delhi app made by Umang',
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -44,11 +46,16 @@ const CustomDrawer = props => {
     }
   };
   //image upload and show
-  const [image,setimage] =useState(null)
+  
+  const [image,setimage] =useState()
+  //const [image,setimage] =useState('../../public/images/5605216.jpg')
   const [useri,setname] =useState("")
+   //username = useri ;
+  
   useEffect(() => {(async () => {
     const storage = getStorage();
      let s = auth.currentUser?.uid;
+     useri = useri
    
       const reference = ref(storage, s);
       await getDownloadURL(reference).then((x) => {
@@ -73,6 +80,8 @@ const CustomDrawer = props => {
      }
    })(); }, []
   );
+    
+  // Code for image uploading
 
   const pickImage = async () => {
   
@@ -119,10 +128,12 @@ const CustomDrawer = props => {
           <TouchableOpacity onPress={pickImage}>
           <Image 
           style={{height: 80, width: 80, borderRadius: 40, marginBottom: 10,borderColor:"white",borderWidth:5,}}
-          source={{uri:image}}
+          source={{uri:image} }
 
           //source={require('./images/image.png')}
-        />
+
+        // Username is in line 145
+        />  
         </TouchableOpacity>
         
           <Text
@@ -131,7 +142,8 @@ const CustomDrawer = props => {
               fontSize: 18,
               marginLeft:10,
             }}>
-             {useri}
+             {useri}                 
+             
           </Text>
           <View style={{flexDirection: 'row'}}>
             <Text
@@ -176,4 +188,5 @@ const CustomDrawer = props => {
   );
 };
 
+//export username ;
 export default CustomDrawer;

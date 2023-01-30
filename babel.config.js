@@ -7,3 +7,5 @@ module.exports = function(api) {
     ],
   };
 };
+
+// This is anonymous babel file no need to touch it often

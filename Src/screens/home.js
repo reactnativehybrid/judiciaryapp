@@ -10,18 +10,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 import 'react-native-gesture-handler';
 import DynamicHeader from '../components/Header';
  
+// React native component Homescreen , first that appear after login. Where all the cards are present
+
 const HomeScreen = () => {
 
   const navigation = useNavigation()
 
-  /*const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.replace("Login")
-      })
-      .catch(error => alert(error.message))
-  }*/
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const Legal = () => {
     navigation.navigate("Legal")
@@ -40,7 +34,9 @@ const HomeScreen = () => {
 if (!fontsLoaded) {
     return <AppLoading/>;
 }
- 
+       
+  // Cards code is written below
+
   return(
     <SafeAreaView style={{flex: 1, backgroundColor:'#f0f2f5'}}>  
       <DynamicHeader animHeaderValue={scrollOffsetY} />    
@@ -64,7 +60,7 @@ if (!fontsLoaded) {
                 Legal Expert
               </Text>
             </View>
-            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Conducting legal analysis and researching legal matters. Providing advice on legal matters. Drafting legal opinions, memoranda, and briefing documents. Reviewing legal material.</Text>
             <CardAction 
               separator={true} 
               inColumn={false}>
@@ -98,7 +94,7 @@ if (!fontsLoaded) {
                 Educational
               </Text>
             </View>
-            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Develops curricula, prepares relevant presentations and materials, and organizes and delivers and/or facilitates classes, workshops, seminars, and other training services.</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
@@ -131,7 +127,8 @@ if (!fontsLoaded) {
                 Medical
               </Text>
             </View>
-            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Health professionals study, diagnose, treat and prevent human illness, injury and other physical and mental impairments in accordance with the needs of the populations they serve.
+</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
@@ -165,7 +162,7 @@ if (!fontsLoaded) {
                 Environment
               </Text>
             </View>
-            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Incididunt nisi enim incididunt occaecat esse dolore fugiat et tempor.Tempor laboris cillum quis sint velit labore sit culpa aliqua incididunt sit elit.</Text>
+            <Text style={{fontSize:15, color:'black',fontFamily:'Roboto-Regular',width:"100%",marginTop:20,marginBottom:20,paddingRight:20,paddingLeft:10,textAlign:"left"}}>Environmental specialists use their knowledge of natural sciences to protect the environment and human health. They may clean up polluted areas, advise policymakers, or work with specific industries to reduce waste and pollution.</Text>
               <CardAction 
               separator={true} 
               inColumn={false}>
@@ -217,7 +214,7 @@ if (!fontsLoaded) {
   ) 
 }
 
-
+//Styling
 const styles = StyleSheet.create({
   cardtitle:{
     flex:1,

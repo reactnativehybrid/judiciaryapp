@@ -10,7 +10,7 @@ import CustomDrawer from '../components/CustomDrawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
-
+// Used for making screen navigation using drawer package
 const Drawer = createDrawerNavigator();
 
 const AppStack = () =>{
@@ -103,7 +103,7 @@ const AppStack = () =>{
         />
         <Drawer.Screen name="Mou" component={MouScreen}
          options={{
-          title: 'Mou',
+          title: 'Contact Us',
           headerStyle: {
             backgroundColor: '#f4511e',
           },

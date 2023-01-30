@@ -1,11 +1,11 @@
+// It is the welcome page which appears first whenever user newly uses the app.
+
 import React, { useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
 import {View, Text, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
 import { auth } from '../../firebase';
-
-
 
 const WelcomePage = () =>{
     const navigation = useNavigation();

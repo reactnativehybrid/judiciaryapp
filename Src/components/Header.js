@@ -5,6 +5,7 @@ import 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 const Header_Max_Height = 120;
 const Header_Min_Height = 90;
+// Code for header
 
 export default function DynamicHeader({animHeaderValue}) {
     const navigation = useNavigation()
@@ -33,8 +34,7 @@ export default function DynamicHeader({animHeaderValue}) {
       >
          
         <Text style={{fontSize: 18, color:'white'}}>
-              Hello, 
-              Sameer 
+              Hola Amigo !!
         </Text>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <ImageBackground
@@ -47,7 +47,8 @@ export default function DynamicHeader({animHeaderValue}) {
     </LinearGradient>
   );
 }
-
+ 
+// Styling code
 const styles = StyleSheet.create({
   header: {
     

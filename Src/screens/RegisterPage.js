@@ -1,3 +1,5 @@
+// It is the Register page where User enter it's details
+
 import React, { useState,useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {auth,createUserDocument } from '../../firebase';
@@ -6,6 +8,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import AppLoading from 'expo-app-loading';
 import { useFonts} from 'expo-font';
+
+// RegisterPage component sets the users INFO
 const RegisterPage = () => {
 
   const [email, setEmail] = useState('');
@@ -15,14 +19,7 @@ const RegisterPage = () => {
   
   const navigation = useNavigation();
  
-  /*useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        navigation.replace("Home");
-      }
-    })
-    return unsubscribe;
-  }, [])*/
+  // It handle signup of the user
 
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth,email, password)
@@ -52,7 +49,7 @@ if (!fontsLoaded) {
 }
   
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView keyboardShouldPersistTaps={'always'}>
       <View style={styles.card} >
         <Image style={styles.loginlogo}  source={require('../../public/icons/UJF-128.jpg')}/>
           <View style={styles.inputs}>

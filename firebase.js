@@ -62,32 +62,3 @@ const myDoc = doc(db,"Users",user.uid)
       )
 
     }
-  /*export const createUserDocument =  (user, additionalData,Mobile) => {
-    if (!user) return;
-    const myDoc = doc(db,"Users",user.uid)
-    getDoc(myDoc)
-      .then((snapshot)=>
-      {
-        if(!snapshot.exists)
-        {
-          const { email } = user;
-          const { UserName } = additionalData;
-          const {Phoneno} = Mobile;
-
-          try
-          {
-            setDoc(myDoc,{
-              UserName,
-              email,
-              Phoneno,
-              createdAt: new Date(),
-            });
-       
-          }
-          catch(error)
-          {
-            console.log('Error in creating user', error);
-          }
-        }
-      });
-    }*/
